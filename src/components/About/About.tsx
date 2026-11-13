@@ -1,0 +1,9 @@
+function About() {
+  return (
+    <section>
+      <h1>Sobre mim</h1>
+    </section>
+  );
+}
+
+export default About;
