@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./components/Pages/Home/Home";
 import About from "./components/About/About";
-import Projects from "./components/Projects/Projects";
 import Skills from "./components/Skills/Skills";
 import Contact from "./components/Contact/Contact";
 
@@ -15,7 +14,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<About />} />
-        <Route path="/projetos" element={<Projects />} />
         <Route path="/habilidades" element={<Skills />} />
         <Route path="/contato" element={<Contact />} />
       </Routes>

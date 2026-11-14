@@ -16,7 +16,12 @@ function Header() {
         <Link to="/contato">Contato</Link>
       </nav>
 
-      <a href="/curriculo.pdf" download className={styles.curriculo}>
+      <a
+        href="/maria-albarado.pdf"
+        download="maria-albarado.pdf"
+        type="application/pdf"
+        className={styles.curriculo}
+      >
         Baixar Currículo
       </a>
     </header>
