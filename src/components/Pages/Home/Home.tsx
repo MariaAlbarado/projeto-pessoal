@@ -2,7 +2,18 @@ import styles from "./Home.module.css";
 import minhaFoto from "../../../assets/maria-pics.png";
 import Projects from "../../Projects/Projects";
 import Footer from "../../Footer/Footer";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+import {
+  FaGithub,
+  FaLinkedin,
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaNodeJs,
+} from "react-icons/fa";
+
+import { SiTypescript, SiExpress, SiPostgresql } from "react-icons/si";
 
 function Home() {
   return (
@@ -57,6 +68,20 @@ function Home() {
             className={styles.foto}
           />
         </div>
+      </section>
+
+      <section
+        className={styles.tecnologias}
+        aria-label="Tecnologias que utilizo"
+      >
+        <FaHtml5 color="#E34F26" title="HTML5" />
+        <FaCss3Alt color="#1572B6" title="CSS3" />
+        <FaJs color="#F7DF1E" title="JavaScript" />
+        <SiTypescript color="#3178C6" title="TypeScript" />
+        <FaReact color="#61DAFB" title="React" />
+        <FaNodeJs color="#5FA04E" title="Node.js" />
+        <SiExpress color="#FFFFFF" title="Express" />
+        <SiPostgresql color="#4169A4" title="PostgreSQL" />
       </section>
 
       <Projects />
