@@ -5,8 +5,8 @@ import lume01 from "../../assets/lume-01.png";
 import lume02 from "../../assets/lume-02.png";
 import maison01 from "../../assets/maison-01.png";
 import maison02 from "../../assets/maison-02.png";
-import petjoy01 from "../../assets/petjoy-01.png";
-import petjoy02 from "../../assets/petjoy-02.png";
+import petjoy01 from "../../assets/petJoy-01.png";
+import petjoy02 from "../../assets/petJoy-02.png";
 
 const projetos = [
   {
