@@ -13,16 +13,20 @@ const projetos = [
     id: 1,
     nome: "LUMÉ",
     imagens: [lume01, lume02],
+    resumo:
+      "E-commerce de moda com uma interface moderna, responsiva e intuitiva.",
     descricao:
-      "LUMÉ é um e-commerce de moda desenvolvido com React e Vite, com uma interface moderna e responsiva. A aplicação possui navegação por categorias, busca de produtos, carrinho de compras, favoritos e visualização ampliada dos produtos, proporcionando uma experiência de compra intuitiva.",
+      "O LUMÉ é um e-commerce de moda desenvolvido para proporcionar uma experiência de compra moderna, intuitiva e responsiva.\n\nFui responsável pelo desenvolvimento da interface e pela implementação de funcionalidades como navegação por categorias, pesquisa de produtos, carrinho de compras, lista de favoritos e visualização ampliada das imagens.\n\nDurante o desenvolvimento, trabalhei com componentes reutilizáveis, gerenciamento de estados no React e organização do código, buscando oferecer uma navegação fluida e uma interface adaptável a diferentes dispositivos.",
     tecnologias: ["React", "JavaScript", "CSS", "Vite"],
   },
   {
     id: 2,
     nome: "Maison Bistrô",
     imagens: [maison01, maison02],
+    resumo:
+      "Sistema de reservas para restaurantes com integração entre front-end e back-end.",
     descricao:
-      "Maison Bistrô é um sistema de reservas para restaurantes que permite realizar, visualizar e cancelar reservas. O projeto integra front-end e back-end, utilizando Node.js, Express e PostgreSQL para gerenciar os dados das reservas.",
+      "O Maison Bistrô é um sistema de gerenciamento de reservas para restaurantes, desenvolvido para facilitar a organização e o controle das reservas de mesas.\n\nDesenvolvi a interface da aplicação e a integração entre front-end e back-end, permitindo realizar novas reservas, consultar os registros e efetuar cancelamentos.\n\nNo back-end, implementei uma API REST utilizando Node.js e Express, com rotas para cadastro, consulta e exclusão de reservas. Também utilizei PostgreSQL para armazenamento dos dados e Insomnia para testar os endpoints.\n\nEsse projeto me permitiu aprimorar meus conhecimentos em comunicação entre cliente e servidor, requisições HTTP e integração com banco de dados.",
     tecnologias: [
       "HTML",
       "CSS",
@@ -36,14 +40,22 @@ const projetos = [
     id: 3,
     nome: "Pet Joy",
     imagens: [petjoy01, petjoy02],
+    resumo:
+      "Aplicação para cadastro e gerenciamento de produtos voltados ao universo pet.",
     descricao:
-      "Pet Joy é uma aplicação voltada ao gerenciamento de produtos para pets, com funcionalidades de cadastro e listagem de produtos. O projeto utiliza uma API desenvolvida com Node.js e Express e integração com PostgreSQL.",
+      "O Pet Joy é uma aplicação voltada ao gerenciamento de produtos para pets, desenvolvida para praticar a criação de APIs e a integração com banco de dados.\n\nDesenvolvi funcionalidades para cadastrar e listar produtos, utilizando uma API REST construída com Node.js e Express.\n\nImplementei rotas para receber e consultar informações dos produtos, conectando a aplicação ao banco de dados PostgreSQL para armazenar os registros.\n\nDurante o desenvolvimento, pratiquei requisições HTTP, estruturação de endpoints e comunicação entre o back-end e o banco de dados.",
     tecnologias: ["JavaScript", "Node.js", "Express", "PostgreSQL"],
   },
 ];
 
 function Projects() {
   const [imagemAberta, setImagemAberta] = useState<string | null>(null);
+
+  const [projetoAberto, setProjetoAberto] = useState<number | null>(null);
+
+  const alternarProjeto = (id: number) => {
+    setProjetoAberto((anterior) => (anterior === id ? null : id));
+  };
 
   useEffect(() => {
     if (!imagemAberta) return;
@@ -79,38 +91,67 @@ function Projects() {
       </div>
 
       <div className={styles.listaProjetos}>
-        {projetos.map((projeto) => (
-          <article key={projeto.id} className={styles.projeto}>
-            <h3 className={styles.nome}>{projeto.nome}</h3>
+        {projetos.map((projeto) => {
+          const aberto = projetoAberto === projeto.id;
 
-            <div className={styles.galeria}>
-              {projeto.imagens.map((imagem, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  className={styles.imagemBotao}
-                  onClick={() => setImagemAberta(imagem)}
-                  aria-label={`Ampliar imagem ${index + 1} do projeto ${projeto.nome}`}
+          return (
+            <article key={projeto.id} className={styles.projeto}>
+              <h3 className={styles.nome}>{projeto.nome}</h3>
+
+              <div className={styles.galeria}>
+                {projeto.imagens.map((imagem, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={styles.imagemBotao}
+                    onClick={() => setImagemAberta(imagem)}
+                    aria-label={`Ampliar imagem ${index + 1} do projeto ${projeto.nome}`}
+                  >
+                    <img
+                      src={imagem}
+                      alt={`Tela ${index + 1} do projeto ${projeto.nome}`}
+                      className={styles.imagem}
+                      loading="lazy"
+                    />
+                  </button>
+                ))}
+              </div>
+
+              <p className={styles.descricao}>{projeto.resumo}</p>
+
+              {aberto && (
+                <div
+                  id={`detalhes-projeto-${projeto.id}`}
+                  className={styles.detalhes}
                 >
-                  <img
-                    src={imagem}
-                    alt={`Tela ${index + 1} do projeto ${projeto.nome}`}
-                    className={styles.imagem}
-                    loading="lazy"
-                  />
-                </button>
-              ))}
-            </div>
+                  <h4 className={styles.tituloDetalhes}>Sobre o projeto</h4>
 
-            <p className={styles.descricao}>{projeto.descricao}</p>
+                  <p className={styles.descricao}>{projeto.descricao}</p>
 
-            <div className={styles.tecnologias}>
-              {projeto.tecnologias.map((tecnologia) => (
-                <span key={tecnologia}>{tecnologia}</span>
-              ))}
-            </div>
-          </article>
-        ))}
+                  <h4 className={styles.tituloDetalhes}>
+                    Tecnologias utilizadas
+                  </h4>
+
+                  <div className={styles.tecnologias}>
+                    {projeto.tecnologias.map((tecnologia) => (
+                      <span key={tecnologia}>{tecnologia}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <button
+                type="button"
+                className={styles.botaoVerMais}
+                onClick={() => alternarProjeto(projeto.id)}
+                aria-expanded={aberto}
+                aria-controls={`detalhes-projeto-${projeto.id}`}
+              >
+                {aberto ? "Ver menos ↑" : "Ver mais ↓"}
+              </button>
+            </article>
+          );
+        })}
       </div>
 
       {imagemAberta && (
