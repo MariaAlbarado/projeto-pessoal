@@ -11,7 +11,6 @@ function Header() {
       <nav className={styles.nav}>
         <Link to="/">Início</Link>
         <Link to="/sobre">Sobre</Link>
-        <Link to="/projetos">Projetos</Link>
         <Link to="/habilidades">Habilidades</Link>
         <Link to="/contato">Contato</Link>
       </nav>
